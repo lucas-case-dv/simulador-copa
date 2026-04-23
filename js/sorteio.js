@@ -4,7 +4,7 @@ import { buscarTimes } from "./api.js";
 
 const times = await buscarTimes();
 
-function sortearGrupos() {
+export function sortearGrupos() {
 
     //Divide os times em 8 grupos de 4
     function separarGrupos(array, tamanho) {
@@ -18,5 +18,3 @@ function sortearGrupos() {
     const grupos = separarGrupos(times, 4);
     return grupos;
 }
-
-console.log(sortearGrupos());
