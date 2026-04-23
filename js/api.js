@@ -1,5 +1,5 @@
 //Arquivo para interações com a API
-async function buscarTimes() {
+export async function buscarTimes() {
     const url = 'https://development-internship-api.geopostenergy.com/WorldCup/GetAllTeams';
 
     const cabecalho = {
