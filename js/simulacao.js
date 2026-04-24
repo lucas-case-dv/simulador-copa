@@ -19,7 +19,6 @@ function criarPartidas() {
             {timeA: grupo[0], timeB: grupo[3], rodada: 3},
             {timeA: grupo[2], timeB: grupo[1], rodada: 3},
         ];
-
         return {
             grupo: String.fromCharCode(65 + index),
             jogos: partidas
@@ -30,4 +29,3 @@ function criarPartidas() {
 }
 
 const cronograma = criarPartidas();
-console.table(cronograma);

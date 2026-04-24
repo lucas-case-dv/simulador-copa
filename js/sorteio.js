@@ -2,9 +2,21 @@
 
 import {buscarTimes} from "./api.js";
 
-const times = await buscarTimes();
+const timesApi = await buscarTimes();
 
 export function sortearGrupos() {
+
+    //Adiciona os devidos campos
+    const times = timesApi.map (time => {
+        return {
+            token: time.token,
+            nome: time.nome,
+            pontos: 0,
+            golsMarcados: 0,
+            golsSofridos: 0,
+            saldoGols: 0
+        };
+    });
 
     //Divide os times em 8 grupos de 4
     function separarGrupos(array, tamanho) {
@@ -17,3 +29,4 @@ export function sortearGrupos() {
 
     return separarGrupos(times, 4);
 }
+
