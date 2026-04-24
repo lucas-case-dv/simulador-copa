@@ -1,6 +1,6 @@
 //Lógica de sorteio
 
-import { buscarTimes } from "./api.js";
+import {buscarTimes} from "./api.js";
 
 const times = await buscarTimes();
 
@@ -15,6 +15,5 @@ export function sortearGrupos() {
         return pedacos;
     }
 
-    const grupos = separarGrupos(times, 4);
-    return grupos;
+    return separarGrupos(times, 4);
 }

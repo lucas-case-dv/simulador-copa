@@ -4,25 +4,30 @@ import { sortearGrupos } from "./sorteio.js";
 
 const grupos = sortearGrupos();
 
-function criarPartidas(grupo) {
+function criarPartidas() {
 
-    //Define os jogos de um grupo
-    const partidas = [
+    const todosOsJogos = grupos.map((grupo, index) => {
+        //Define os jogos de um grupo
+        const partidas = [
 
-        {timeA: grupo[0], timeB: grupo[1], rodada: 1},
-        {timeA: grupo[2], timeB: grupo[2], rodada: 1},
+            {timeA: grupo[0], timeB: grupo[1], rodada: 1},
+            {timeA: grupo[2], timeB: grupo[3], rodada: 1},
 
-        {timeA: grupo[2], timeB: grupo[0], rodada: 2},
-        {timeA: grupo[1], timeB: grupo[3], rodada: 2},
+            {timeA: grupo[2], timeB: grupo[0], rodada: 2},
+            {timeA: grupo[1], timeB: grupo[3], rodada: 2},
 
-        {timeA: grupo[0], timeB: grupo[3], rodada: 3},
-        {timeA: grupo[2], timeB: grupo[1], rodada: 3},
-    ];
+            {timeA: grupo[0], timeB: grupo[3], rodada: 3},
+            {timeA: grupo[2], timeB: grupo[1], rodada: 3},
+        ];
 
-    return partidas;
+        return {
+            grupo: String.fromCharCode(65 + index),
+            jogos: partidas
+        };
+    });
+
+    return todosOsJogos;
 }
 
-//Define partidas para cada grupo
-for (let i = 0; i < grupos.length; i++) {
-    criarPartidas(grupos[i]);
-}
+const cronograma = criarPartidas();
+console.table(cronograma);
