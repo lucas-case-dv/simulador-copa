@@ -21,7 +21,8 @@ function criarPartidas() {
         ];
         return {
             grupo: String.fromCharCode(65 + index),
-            jogos: partidas
+            jogos: partidas,
+            equipes: grupo
         };
     });
 
@@ -63,7 +64,41 @@ function processarResultado(partida) {
     }
 }
 
+//Define posições
+function ordenarGrupo(grupo) {
+    grupo.sort((a, b) => {
+        if (b.pontos !== a.pontos) {
+            return b.pontos - a.pontos;
+        }
+
+        if (b.saldoGols !== a.saldoGols) {
+            return b.saldoGols - a.saldoGols;
+        }
+
+        // Sorteia no caso de empate dos outros critérios
+        return Math.random() - 0.5;
+    });
+}
+
+function processarFaseDeGrupos(cronograma) {
+    const classificadosOitavas = [];
+
+    cronograma.forEach(itemGrupo => {
+
+        ordenarGrupo(itemGrupo.equipes);
+
+        classificadosOitavas.push({
+            grupo: itemGrupo.grupo,
+            primeiro: itemGrupo.equipes[0],
+            segundo: itemGrupo.equipes[1]
+        });
+    });
+
+    return classificadosOitavas;
+}
+
 const cronograma = criarPartidas();
 simularGrupos(cronograma);
-console.log(grupos);
+console.log(processarFaseDeGrupos(cronograma));
+
 
